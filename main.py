@@ -1,12 +1,15 @@
+import os
+from dotenv import load_dotenv
 import chainlit as cl
 from model_config import config
 from agents import Agent ,Runner
-from agent_instructions import instruction
 from openai.types.responses import ResponseTextDeltaEvent
+_: bool = load_dotenv()
+agent_instruction = os.getenv("instruction")
 
 agent = Agent(
     name="Bakchod Agent", 
-    instructions = instruction,
+    instructions = agent_instruction,
 )
 
 @cl.on_chat_start
